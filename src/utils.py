@@ -44,3 +44,59 @@ def display_market_data(df: pd.DataFrame, limit: int = 10):
 
     print("-" * 60)
 
+def summarize_market_performance(df: pd.DataFrame) -> None:
+    """
+    Display the top gainer and top loser from the cryptocurrency dataset.
+    Work by Linwood
+    Args:
+        df (pd.DataFrame): Market data from PullData.get_market_data().
+            Must include a 'change_24h' column.
+    """
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Input 'df' must be a pandas DataFrame.")
+    if df.empty:
+        print("⚠️  No data available for summary.")
+        return
+    if "change_24h" not in df.columns:
+        raise ValueError("DataFrame must include a 'change_24h' column.")
+
+    try:
+        top_gainer = df.loc[df["change_24h"].idxmax()]
+        top_loser = df.loc[df["change_24h"].idxmin()]
+
+        print("\n📈 Market Performance Summary")
+        print("-" * 40)
+        print(f"🔼 Top Gainer: {top_gainer['name']} ({top_gainer['symbol'].upper()}) +{top_gainer['change_24h']:.2f}%")
+        print(f"🔻 Top Loser: {top_loser['name']} ({top_loser['symbol'].upper()}) {top_loser['change_24h']:.2f}%")
+        print("-" * 40)
+    except Exception:
+        print("⚠️  Could not compute summary statistics.")
+
+def user_interaction(df: pd.DataFrame) -> None:
+    """
+    Provide an interactive console menu for users to view cryptocurrency data.
+    Work by Linwood
+    Args:
+        df (pd.DataFrame): Market data from PullData.get_market_data().
+    """
+    if df.empty:
+        print("⚠️  No market data available for interaction.")
+        return
+
+    while True:
+        print("\n=== CRYPTO TRACKER MENU ===")
+        print("1. View top 10 cryptocurrencies")
+        print("2. View top gainer/loser summary")
+        print("3. Exit")
+        choice = input("Select an option (1–3): ").strip()
+
+        if choice == "1":
+            display_market_data(df, limit=10)
+        elif choice == "2":
+            summarize_market_performance(df)
+        elif choice == "3":
+            print("👋 Exiting crypto tracker. Goodbye!")
+            break
+        else:
+            print("❌ Invalid selection. Please enter 1, 2, or 3.")
+
