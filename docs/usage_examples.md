@@ -24,6 +24,7 @@ print(market_data.head())
 Description:
 Retrieves the top 100 cryptocurrencies by market capitalization and prints the first few rows of the DataFrame.
 
+---
 
 Example 2 — Handle Rate Limiting Automatically
 dataPuller = PullData()
