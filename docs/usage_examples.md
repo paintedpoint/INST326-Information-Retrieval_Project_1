@@ -10,7 +10,7 @@ Each example shows typical function usage and expected output.
 
 ---
 
-## Module: api_library
+Module: api_library
 
 Example 1 — Fetch and Display Market Data
 ```python
