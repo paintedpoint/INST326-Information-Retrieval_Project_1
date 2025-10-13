@@ -14,7 +14,7 @@ class PullData:
     def __init__(self):
         self.url = "https://api.coingecko.com/api/v3"
         self.last_request_time = 0
-        self.rate_limit_delay = 1.5
+        self.rate_limit_delay = 3.0
 
     def _rate_limit(self):
         """Ensure we don't exceed API rate limits"""
