@@ -1,14 +1,12 @@
-
 import requests
 import pandas as pd
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List
 import time
-
 
 class PullData:
     """
     Class for fetching and processing data from CoinGecko API
+    Work by William
     """
 
     def __init__(self):
@@ -162,7 +160,6 @@ class PullData:
         }
         
         data = self._make_request("simple/price", params)
-        
         if not data:
             return {}
         
@@ -172,25 +169,3 @@ class PullData:
         
         return prices
     
-
-dataPuller = PullData()
-print("=" * 60)
-print("Testing Crypto Data Manager")
-print("=" * 60)
-
-# Test 1: Get market data
-print("\n1. Getting top 10 cryptocurrencies by market cap...")
-market_data = dataPuller.get_market_data()
-print(market_data[['name', 'symbol', 'current_price', 'change_24h']])
-
-# Test 2: Get crypto details
-print("\n3. Getting Bitcoin details...")
-btc_details = dataPuller.get_crypto_details('bitcoin')
-print(f"Name: {btc_details['name']}")
-print(f"Price: ${btc_details['current_price']:,.2f}")
-print(f"Description: {btc_details['description'][:200]}...")
-
-# Test 3: Get historical data
-print("\n4. Getting 7-day historical data for Bitcoin...")
-eth_history = dataPuller.get_historical_data('bitcoin', days=7)
-print(eth_history.tail())
