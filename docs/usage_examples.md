@@ -8,8 +8,6 @@ This document demonstrates how to use all major components of the project, inclu
 
 Each example shows typical function usage and expected output.
 
----
-
 Module: api_library
 
 
