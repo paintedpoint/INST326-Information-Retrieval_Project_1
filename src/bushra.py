@@ -7,7 +7,7 @@ import time
 
 
 # ===========================================
-# CLASS 1: PullData  (From your teammate)
+# CLASS 1: PullData  
 # ===========================================
 class PullData:
     """
