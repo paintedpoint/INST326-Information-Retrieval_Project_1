@@ -50,3 +50,4 @@ print(eth_history.tail())
 # Opens a menu where users can select between viewing top gainer/loser or top 10 cryptos
 if __name__ == "__main__":
     main()
+    
