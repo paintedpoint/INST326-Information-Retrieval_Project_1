@@ -185,7 +185,7 @@ A user interface including user selection
     market_data = dataPuller.get_market_data()
     user_interaction(market_data)
 
-
+ADD MORE FUNCTIONS HERE
 
 # Function Reference Structure:
 
