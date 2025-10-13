@@ -10,9 +10,8 @@ Each example shows typical function usage and expected output.
 
 Module: api_library
 
-
-Example 1 — Fetch and Display Market Data
 ```python
+Example 1 — Fetch and Display Market Data
 from api_library import PullData
 
 dataPuller = PullData()
