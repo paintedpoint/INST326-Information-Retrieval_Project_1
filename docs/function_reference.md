@@ -185,7 +185,7 @@ A user interface including user selection
     market_data = dataPuller.get_market_data()
     user_interaction(market_data)
 
-
+ADD MORE FUNCTIONS HERE
 
 # Function Reference Structure:
 
@@ -207,3 +207,89 @@ If applicable, describe returned item
 **Related functions**
 
     List any other fuctions if this uses another fuction
+#def _make_request(self, endpoint: str, params: Dict = None) -> Dict:
+Responsible for sending an HTTP GET request to a specified endpoint of an API (in your case, the CoinGecko API), while handling: rate limiting, retries, error handling, and response parsing.
+
+**Parameters**
+endpoint: str The API endpoint to request, relative to the base URL stored in self.url.
+params: Dict = None Dictionary of query parameters to include in the GET request.
+
+**Returns**
+Success: Returns the API response parsed as a Python dictionary (Dict), i.e., the JSON data converted into a Python object.
+Failure: If all retries fail, it prints an error message and returns None
+
+**Example**
+
+*Related functions**
+
+
+
+#def buy(self, crypto_id: str, amount: float):
+Records a purchase of a specified amount of a cryptocurrency
+
+**Parameters**
+crypto_id: str The CoinGecko ID of the cryptocurrency you want to buy.
+amount: float The number of units of the cryptocurrency to buy 
+
+**Returns**
+The function does not explicitly return anything (return None implicitly). Its main effect is side effects:It prints an error message if the price cannot be fetched. In the full class, it would also update portfolio holdings and transaction history.
+
+**Example**
+
+**Related Functions**
+
+
+
+#def sell(self, crypto_id: str, amount: float):
+The sell function sells a specified amount of a cryptocurrency from the user’s portfolio.
+
+**Parameter**
+crypto_id: str The CoinGecko ID of the cryprocurrency to sell
+amount: float The quantity of the cryptocurrency to sell
+
+**Returns**
+The function does not return anything (return None). Its effect is side effects: Updates self.holdings, adds a record to self.transactions, prints a summary message
+
+**Examples**
+portfolio.sell('bitcoin', 0.005)
+
+**Related Functions**
+
+
+
+#def portfolio_value(self):
+Calculates and displays the total value of the portfolio based on current cryptocurrency holdings and live market prices.
+
+**Parameter**
+self — the instance of the class. It is expected that self has self.transactions: a list of dictionaries where each dictionary represents a transaction with keys
+
+**Returns**
+total_value (float) — the sum of the value of all cryptocurrencies in the portfolio.
+If there are no holdings, returns 0.0.
+
+**Examples**
+portfolio = MyPortfolioClass()
+portfolio.holdings = {
+    'BTC': {'amount': 0.5},
+    'ETH': {'amount': 2}
+}
+total = portfolio.portfolio_value()
+
+**Related Functions**
+
+#def show_transactions(self):
+Displays the transaction history of the portfolio, showing details of each buy or sell transaction, including time, amount, cryptocurrency, price, and profit for sales.
+
+**Parameter**
+self — the instance of the class. It is expected that self has self.transactions: a list of dictionaries where each dictionary represents a transaction with keys
+
+**Returns**
+None — this function only prints the transaction history.
+If there are no transactions, it prints "No transactions yet."
+
+**Examples**
+portfolio = MyPortfolioClass()
+portfolio.transactions[{'type': 'SELL', 'crypto': 'ETH', 'amount': 1, 'price': 2000, 'time': '2025-10-12 15:00', 'profit': 100}]
+portfolio.show_transactions()
+
+**Related Functions**

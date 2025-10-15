@@ -1,6 +1,6 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from src import PullData, display_market_data, user_interaction, summarize_market_performance
+from src import PullData, CryptoPortfolio, display_market_data, user_interaction, summarize_market_performance
 
 def main():
     """
@@ -50,4 +50,22 @@ print(eth_history.tail())
 # Opens a menu where users can select between viewing top gainer/loser or top 10 cryptos
 if __name__ == "__main__":
     main()
-    
+
+print("=" * 60)
+print(" CRYPTO PORTFOLIO MANAGER ")
+print("=" * 60)
+
+data_puller = PullData()
+portfolio = CryptoPortfolio(data_puller)
+prices = data_puller.get_current_price(["bitcoin", "ethereum"])
+
+# Example buys
+portfolio.buy("bitcoin", 0.001)
+portfolio.buy("ethereum", 0.02)
+
+# Example sell
+portfolio.sell("bitcoin", 0.0005)
+
+# Portfolio summary
+portfolio.portfolio_value()
+portfolio.show_transactions()
